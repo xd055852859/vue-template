@@ -1,6 +1,6 @@
 import router from "@/router";
 import axios from "axios";
-
+import { commonStore } from "@/store/common";
 const AUTH_URL = import.meta.env.VITE_AUTH_URL;
 const API_URL = import.meta.env.VITE_API_URL;
 const BASE = import.meta.env.VITE_BASE;
@@ -14,6 +14,7 @@ axios.interceptors.response.use(
       sessionStorage.clear();
       router.replace(`${BASE}`);
       token = "";
+      commonStore().clearStore();
     } else if (response.data.status !== 200 && response.data.msg !== "OK") {
       // ElMessage.error(response.data.msg);
     }

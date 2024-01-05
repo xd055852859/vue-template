@@ -4,13 +4,14 @@ import appStore from "@/store";
 import { storeToRefs } from "pinia";
 import Login from "./login.vue";
 import Reset from "./reset.vue";
+const BASE = import.meta.env.VITE_BASE;
 const { loginState, token } = storeToRefs(appStore.authStore);
 const { deviceType } = storeToRefs(appStore.commonStore);
 const showLogin = ref<boolean>(false);
 onMounted(() => {
-  console.log(token.value)
+  console.log(token.value);
   if (token.value) {
-    router.replace("/home");
+    router.replace(`${BASE}home`);
   }
 });
 </script>

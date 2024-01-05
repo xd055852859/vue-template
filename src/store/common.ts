@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-
+import { authStore } from "./auth";
 // 使用setup模式定义
 export const commonStore = defineStore("commonStore", () => {
   const deviceType = ref<string>("computer");
@@ -24,9 +24,10 @@ export const commonStore = defineStore("commonStore", () => {
     } else if (1200 <= width) {
       deviceSize.value = "xl";
     }
-
   };
-
+  const clearStore = () => {
+    authStore().$reset();
+  };
   return {
     deviceType,
     setDeviceType,
@@ -34,5 +35,6 @@ export const commonStore = defineStore("commonStore", () => {
     deviceHeight,
     setDeviceWidth,
     deviceSize,
+    clearStore
   };
 });

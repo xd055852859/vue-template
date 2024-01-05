@@ -1,29 +1,29 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+const BASE = import.meta.env.VITE_BASE;
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: `${BASE}`,
     name: "login",
     component: () => import("@/views/login/index.vue"),
     children: [],
   },
   {
-    path: "/home",
+    path: `${BASE}home`,
     name: "home",
-    redirect: "/home/index",
+    redirect: `${BASE}home/overview`,
     children: [
       {
-        path: "index",
-        name: "index",
-        component: () => import("@/views/home/index.vue"),
+        path: "overview",
+        name: "overview",
+        component: () => import("@/views/home/overview.vue"),
         children: [],
       }
     ],
   },
 ];
-const routerHistory = createWebHashHistory();
+// const routerHistory = createWebHashHistory();
 const router = createRouter({
-  history: routerHistory,
+  history: createWebHistory(),
   routes,
 });
 //全局后置守卫
