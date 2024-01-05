@@ -5,6 +5,7 @@ import router from "@/router";
 import appStore from "@/store";
 import _ from "lodash";
 import { getSearchParamValue, is_mobile } from "./services/util/url";
+const BASE = import.meta.env.VITE_BASE;
 const dayjs: any = inject("dayjs");
 const { token } = storeToRefs(appStore.authStore);
 const { deviceWidth, deviceHeight } = storeToRefs(appStore.commonStore);
@@ -29,7 +30,7 @@ onMounted(() => {
     request.setToken(token);
     setToken(token);
   } else {
-    router.replace("/");
+    router.replace(`${BASE}`);
   }
 });
 const changeDevice = () => {
