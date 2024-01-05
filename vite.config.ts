@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 // import Components from "unplugin-vue-components/vite";
@@ -8,6 +8,7 @@ import AutoImport from "unplugin-auto-import/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
+  const env = loadEnv(mode, process.cwd());
   return {
     plugins: [
       vue(),
@@ -29,7 +30,7 @@ export default defineConfig(({ mode, command }) => {
         },
       },
     },
-    base: "./", // 设置打包路径
+    base: env.VITE_BASE, // 设置打包路径
     server: {
       host: "0.0.0.0",
       port: 8001, // 设置服务启动端口号
