@@ -12,26 +12,26 @@ const { deviceWidth, deviceHeight } = storeToRefs(appStore.commonStore);
 const { setToken, getUserInfo } = appStore.authStore;
 const { setDeviceWidth, setDeviceType } = appStore.commonStore;
 onMounted(() => {
-  changeDevice();
-  // 检测设备方向
-  window.addEventListener("orientationchange", _.debounce(changeDevice, 100));
+  // changeDevice();
   // // 检测设备方向
-  window.addEventListener("resize", function () {
-    _.debounce(changeDevice, 100);
-  });
-  const search = window.location.search
-    ? window.location.search.split("?")[1]
-    : window.location.hash.split("?")[1];
-  const token = getSearchParamValue(search, "token")
-    ? (getSearchParamValue(search, "token") as string)
-    : localStorage.getItem("auth_token");
-  console.log(token);
-  if (token) {
-    request.setToken(token);
-    setToken(token);
-  } else {
-    router.replace(`${BASE}`);
-  }
+  // window.addEventListener("orientationchange", _.debounce(changeDevice, 100));
+  // // // 检测设备方向
+  // window.addEventListener("resize", function () {
+  //   _.debounce(changeDevice, 100);
+  // });
+  // const search = window.location.search
+  //   ? window.location.search.split("?")[1]
+  //   : window.location.hash.split("?")[1];
+  // const token = getSearchParamValue(search, "token")
+  //   ? (getSearchParamValue(search, "token") as string)
+  //   : localStorage.getItem("auth_token");
+  // console.log(token);
+  // if (token) {
+  //   request.setToken(token);
+  //   setToken(token);
+  // } else {
+  //   router.replace(`${BASE}`);
+  // }
 });
 const changeDevice = () => {
   setDeviceWidth(
